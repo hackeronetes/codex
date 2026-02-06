@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VINYA — Light Circuit</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f8fb;
+      --panel: #ffffff;
+      --text: #101828;
+      --muted: #5b6b80;
+      --accent: #1b7dff;
+      --accent-2: #0fd7a4;
+      --line: rgba(16, 24, 40, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      color: var(--text);
+      background: linear-gradient(120deg, rgba(27, 125, 255, 0.08), transparent 40%), var(--bg);
+    }
+    header {
+      padding: 32px clamp(24px, 7vw, 96px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo span {
+      width: 12px;
+      height: 12px;
+      border-radius: 4px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    }
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    main {
+      padding: 0 clamp(24px, 7vw, 96px) 80px;
+      display: grid;
+      gap: 32px;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 40px;
+      align-items: center;
+    }
+    h1 {
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      margin: 0 0 16px;
+    }
+    p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(27, 125, 255, 0.1);
+      color: var(--accent);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+    .panel {
+      background: var(--panel);
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      padding: 24px;
+      box-shadow: 0 20px 40px rgba(16, 24, 40, 0.05);
+    }
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+    .timeline-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+    .timeline-row span {
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .graph {
+      display: grid;
+      gap: 16px;
+    }
+    svg {
+      width: 100%;
+      height: 240px;
+    }
+    .node {
+      fill: #ffffff;
+      stroke: var(--accent);
+      stroke-width: 2;
+    }
+    .node.active {
+      fill: var(--accent-2);
+    }
+    .edge {
+      stroke: rgba(27, 125, 255, 0.25);
+      stroke-width: 1.5;
+    }
+    .chip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+    }
+    .chip {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(27, 125, 255, 0.06);
+      border: 1px solid rgba(27, 125, 255, 0.12);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><span></span> VINYA</div>
+    <nav>
+      <a href="/">Concepts</a>
+      <a href="#focus">Focus</a>
+      <a href="#launch">Launch</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="tag">Research + Product</div>
+        <h1>Security tools that map the full supply chain attack surface.</h1>
+        <p>VINYA is a startup founded by a bug bounty hunter, building offensive-first defenses for software supply chains, AI agents, and IoT. We help teams ship faster with verified provenance and adversarial testing.</p>
+      </div>
+      <div class="panel graph" aria-label="Graph database style visualization">
+        <strong>Dependency Graph Studio</strong>
+        <p>Interact with attack paths, package risk scoring, and live remediation guidance.</p>
+        <svg viewBox="0 0 600 240" role="img">
+          <line class="edge" x1="100" y1="60" x2="220" y2="80" />
+          <line class="edge" x1="220" y1="80" x2="320" y2="40" />
+          <line class="edge" x1="220" y1="80" x2="320" y2="140" />
+          <line class="edge" x1="320" y1="140" x2="440" y2="100" />
+          <line class="edge" x1="320" y1="40" x2="440" y2="100" />
+          <line class="edge" x1="440" y1="100" x2="520" y2="60" />
+          <circle class="node" cx="100" cy="60" r="14" />
+          <circle class="node" cx="220" cy="80" r="16" />
+          <circle class="node" cx="320" cy="40" r="12" />
+          <circle class="node" cx="320" cy="140" r="12" />
+          <circle class="node" cx="440" cy="100" r="18" />
+          <circle class="node" cx="520" cy="60" r="12" />
+        </svg>
+      </div>
+    </section>
+
+    <section class="panel" id="focus">
+      <div class="chip-grid">
+        <div class="chip"><strong>Supply Chain Pilot</strong><br />Automated attack simulations for CI/CD dependencies.</div>
+        <div class="chip"><strong>AI Agent Research</strong><br />Prompt-chain penetration testing and orchestration risk.</div>
+        <div class="chip"><strong>IoT Horizon</strong><br />Device firmware, OTA, and hardware-backed trust.</div>
+      </div>
+    </section>
+
+    <section class="panel timeline" id="launch">
+      <h2>Launch cadence</h2>
+      <div class="timeline-row"><span>Mar 15</span> Pilot rollout for supply chain tooling with design partners.</div>
+      <div class="timeline-row"><span>Apr 2026</span> Full product launch with AI agent & IoT research tracks.</div>
+    </section>
+  </main>
+
+  <script>
+    const nodes = document.querySelectorAll('.node');
+    let index = 0;
+    setInterval(() => {
+      nodes[index].classList.remove('active');
+      index = (index + 1) % nodes.length;
+      nodes[index].classList.add('active');
+    }, 1200);
+  </script>
+</body>
+</html>

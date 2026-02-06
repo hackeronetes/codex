@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VINYA — Glass Shield</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0f1a;
+      --glass: rgba(255, 255, 255, 0.08);
+      --text: #f5f7ff;
+      --muted: #b0bfd6;
+      --accent: #7df9ff;
+      --accent-2: #a18bff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Manrope", "Inter", sans-serif;
+      background: radial-gradient(circle at top left, rgba(125, 249, 255, 0.15), transparent 40%),
+                  radial-gradient(circle at bottom right, rgba(161, 139, 255, 0.2), transparent 45%),
+                  var(--bg);
+      color: var(--text);
+    }
+    header {
+      padding: 32px clamp(24px, 7vw, 96px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      letter-spacing: 0.2em;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo span {
+      width: 14px;
+      height: 14px;
+      border-radius: 6px;
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 18px rgba(125, 249, 255, 0.6);
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 18px;
+      font-size: 14px;
+    }
+    main {
+      padding: 0 clamp(24px, 7vw, 96px) 80px;
+      display: grid;
+      gap: 32px;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+      align-items: center;
+    }
+    h1 {
+      font-size: clamp(2.6rem, 4vw, 3.6rem);
+      margin: 0 0 16px;
+    }
+    p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .glass {
+      background: var(--glass);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 24px;
+      backdrop-filter: blur(14px);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    svg {
+      width: 100%;
+      height: 240px;
+    }
+    .edge { stroke: rgba(125, 249, 255, 0.4); stroke-width: 1.2; }
+    .node { fill: rgba(161, 139, 255, 0.9); }
+    .node.active { fill: var(--accent); }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(125, 249, 255, 0.15);
+      color: var(--accent);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><span></span> VINYA</div>
+    <nav>
+      <a href="/">Concepts</a>
+      <a href="#graph">Graph</a>
+      <a href="#roadmap">Roadmap</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="badge">Minimal + Secure</div>
+        <h1>Build fast, ship safe, see every dependency.</h1>
+        <p>VINYA is a cybersecurity startup focused on offensive research. Our first product secures the software supply chain while our labs expand into AI agents and IoT security.</p>
+      </div>
+      <div class="glass" id="graph">
+        <strong>Graph intelligence layer</strong>
+        <p>Interactive graph database visualization of provenance, dependencies, and exploit paths.</p>
+        <svg viewBox="0 0 640 240" role="img">
+          <line class="edge" x1="80" y1="80" x2="200" y2="120" />
+          <line class="edge" x1="200" y1="120" x2="320" y2="60" />
+          <line class="edge" x1="200" y1="120" x2="320" y2="180" />
+          <line class="edge" x1="320" y1="60" x2="440" y2="120" />
+          <line class="edge" x1="320" y1="180" x2="440" y2="120" />
+          <line class="edge" x1="440" y1="120" x2="560" y2="80" />
+          <circle class="node" cx="80" cy="80" r="12" />
+          <circle class="node" cx="200" cy="120" r="16" />
+          <circle class="node" cx="320" cy="60" r="12" />
+          <circle class="node" cx="320" cy="180" r="12" />
+          <circle class="node" cx="440" cy="120" r="16" />
+          <circle class="node" cx="560" cy="80" r="12" />
+        </svg>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="glass">
+        <strong>Supply Chain Launch</strong>
+        <p>Targeted at CI/CD risk, package provenance, and attacker simulation.</p>
+      </div>
+      <div class="glass">
+        <strong>AI Agent Research</strong>
+        <p>Threat modeling for agentic workflows, prompt chains, and tool misuse.</p>
+      </div>
+      <div class="glass">
+        <strong>IoT Future</strong>
+        <p>Hardware-backed assurance and device identity beyond 2026.</p>
+      </div>
+    </section>
+
+    <section class="glass" id="roadmap">
+      <strong>Launch roadmap</strong>
+      <p>Mar 15: pilot for supply chain tooling. Apr 2026: full product launch.</p>
+    </section>
+  </main>
+
+  <script>
+    const nodes = document.querySelectorAll('.node');
+    let index = 0;
+    setInterval(() => {
+      nodes[index].classList.remove('active');
+      index = (index + 1) % nodes.length;
+      nodes[index].classList.add('active');
+    }, 1300);
+  </script>
+</body>
+</html>

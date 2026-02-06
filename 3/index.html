@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VINYA — Split Signal</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0c12;
+      --panel: #121728;
+      --text: #f4f6fb;
+      --muted: #8d99ae;
+      --accent: #ff7a59;
+      --accent-2: #7c5dff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "IBM Plex Sans", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .layout {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(260px, 420px) 1fr;
+    }
+    aside {
+      padding: 48px 40px;
+      background: linear-gradient(180deg, rgba(124, 93, 255, 0.15), transparent 65%);
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      display: grid;
+      gap: 24px;
+    }
+    main {
+      padding: 48px clamp(24px, 6vw, 72px);
+      display: grid;
+      gap: 32px;
+    }
+    .logo {
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo span {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 14px rgba(255, 122, 89, 0.7);
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(2.6rem, 4vw, 3.6rem);
+    }
+    p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 10px 18px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      text-decoration: none;
+      color: var(--text);
+      font-size: 14px;
+    }
+    .btn.primary {
+      background: linear-gradient(120deg, rgba(255, 122, 89, 0.35), rgba(124, 93, 255, 0.4));
+      border-color: rgba(255, 122, 89, 0.4);
+    }
+    .signal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--panel);
+      border-radius: 16px;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .graph {
+      display: grid;
+      gap: 16px;
+    }
+    svg {
+      width: 100%;
+      height: 260px;
+    }
+    .node {
+      fill: rgba(255, 122, 89, 0.9);
+    }
+    .node.active {
+      fill: #ffffff;
+    }
+    .edge {
+      stroke: rgba(124, 93, 255, 0.4);
+      stroke-width: 1.5;
+    }
+    .list {
+      display: grid;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      aside {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside>
+      <div class="logo"><span></span> VINYA</div>
+      <div>
+        <h1>Offense-driven security research.</h1>
+        <p>From supply chain exploits to AI agent adversarial testing, VINYA ships with the hacker's mindset to keep teams safe and fast.</p>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="#graph">View graph intel</a>
+        <a class="btn" href="/">All concepts</a>
+      </div>
+      <div class="list">
+        <div><strong>Mar 15</strong> — Pilot supply chain tool.</div>
+        <div><strong>Apr 2026</strong> — Full launch with AI + IoT research.</div>
+      </div>
+    </aside>
+
+    <main>
+      <section class="graph card" id="graph">
+        <strong>Graph-based attack surface</strong>
+        <p>Interactive dependency map for runtime provenance, trust scores, and exploit chaining.</p>
+        <svg viewBox="0 0 640 260" role="img">
+          <line class="edge" x1="80" y1="130" x2="200" y2="70" />
+          <line class="edge" x1="80" y1="130" x2="200" y2="190" />
+          <line class="edge" x1="200" y1="70" x2="320" y2="130" />
+          <line class="edge" x1="200" y1="190" x2="320" y2="130" />
+          <line class="edge" x1="320" y1="130" x2="440" y2="70" />
+          <line class="edge" x1="320" y1="130" x2="440" y2="190" />
+          <line class="edge" x1="440" y1="70" x2="560" y2="130" />
+          <line class="edge" x1="440" y1="190" x2="560" y2="130" />
+          <circle class="node" cx="80" cy="130" r="12" />
+          <circle class="node" cx="200" cy="70" r="14" />
+          <circle class="node" cx="200" cy="190" r="14" />
+          <circle class="node" cx="320" cy="130" r="16" />
+          <circle class="node" cx="440" cy="70" r="14" />
+          <circle class="node" cx="440" cy="190" r="14" />
+          <circle class="node" cx="560" cy="130" r="12" />
+        </svg>
+      </section>
+
+      <section class="signal-grid">
+        <div class="card">
+          <strong>Supply Chain Sentinel</strong>
+          <p>Detect malicious packages, hijacked build scripts, and unsafe dependencies before release.</p>
+        </div>
+        <div class="card">
+          <strong>AI Agent Kill Chain</strong>
+          <p>Red-team agents, prompt chaining, and orchestration for adversarial resilience.</p>
+        </div>
+        <div class="card">
+          <strong>IoT Next Horizon</strong>
+          <p>Research lab for firmware tamper detection and OTA trust signals.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const nodes = document.querySelectorAll('.node');
+    let index = 0;
+    setInterval(() => {
+      nodes[index].classList.remove('active');
+      index = (index + 1) % nodes.length;
+      nodes[index].classList.add('active');
+    }, 1100);
+  </script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VINYA — Dark Matrix</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #070b10;
+      --panel: #0f1621;
+      --muted: #6f8199;
+      --text: #e7f0fb;
+      --accent: #63f7c6;
+      --accent-2: #68a7ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", "Inter", sans-serif;
+      background: radial-gradient(circle at 10% 20%, rgba(99, 247, 198, 0.08), transparent 35%),
+                  radial-gradient(circle at 90% 10%, rgba(104, 167, 255, 0.12), transparent 45%),
+                  var(--bg);
+      color: var(--text);
+    }
+    header {
+      padding: 32px clamp(24px, 6vw, 80px) 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+    }
+    .logo span {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 18px rgba(99, 247, 198, 0.8);
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 14px;
+    }
+    main {
+      padding: 48px clamp(24px, 6vw, 80px) 80px;
+      display: grid;
+      gap: 40px;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+      align-items: center;
+    }
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      margin: 12px 0 16px;
+    }
+    p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0 0 16px;
+    }
+    .cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .button {
+      padding: 12px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+      transition: border 0.2s ease, transform 0.2s ease;
+    }
+    .button.primary {
+      background: linear-gradient(135deg, rgba(99, 247, 198, 0.2), rgba(104, 167, 255, 0.35));
+      border-color: rgba(99, 247, 198, 0.4);
+    }
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: rgba(99, 247, 198, 0.6);
+    }
+    .panel {
+      background: var(--panel);
+      border-radius: 24px;
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .metric {
+      display: grid;
+      gap: 8px;
+      font-size: 14px;
+    }
+    .muted {
+      color: var(--muted);
+    }
+    .metric strong {
+      font-size: 22px;
+    }
+    .graph {
+      display: grid;
+      gap: 16px;
+    }
+    svg {
+      width: 100%;
+      height: 280px;
+    }
+    .node {
+      fill: rgba(99, 247, 198, 0.65);
+      stroke: rgba(99, 247, 198, 0.9);
+      stroke-width: 1.2;
+      transition: transform 0.2s ease, fill 0.2s ease;
+    }
+    .node.active {
+      fill: #ffffff;
+    }
+    .edge {
+      stroke: rgba(104, 167, 255, 0.35);
+      stroke-width: 1;
+    }
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+    .timeline-item {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .timeline-item span {
+      color: var(--accent);
+      font-weight: 600;
+      min-width: 100px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><span></span> VINYA</div>
+    <nav>
+      <a href="/">Concepts</a>
+      <a href="#platform">Platform</a>
+      <a href="#timeline">Timeline</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Offensive Research Studio</div>
+        <h1>Break the chain before adversaries do.</h1>
+        <p>VINYA builds offensive-grade tooling for software supply chains, AI agents, and IoT security. We ship with the attacker's mindset to harden every dependency and deployment path.</p>
+        <div class="cta">
+          <a class="button primary" href="#platform">Explore the platform</a>
+          <a class="button" href="#timeline">Pilot readiness</a>
+        </div>
+      </div>
+      <div class="panel graph" id="platform">
+        <div class="eyebrow">Graph Intelligence Core</div>
+        <p>Live dependency graph surfaces threat paths, compromised packages, and runtime provenance.</p>
+        <svg viewBox="0 0 600 280" role="img" aria-label="Graph visualization">
+          <line class="edge" x1="90" y1="60" x2="210" y2="120" />
+          <line class="edge" x1="210" y1="120" x2="320" y2="60" />
+          <line class="edge" x1="210" y1="120" x2="320" y2="180" />
+          <line class="edge" x1="320" y1="180" x2="450" y2="120" />
+          <line class="edge" x1="320" y1="60" x2="450" y2="120" />
+          <line class="edge" x1="450" y1="120" x2="540" y2="60" />
+          <circle class="node" cx="90" cy="60" r="12" />
+          <circle class="node" cx="210" cy="120" r="14" />
+          <circle class="node" cx="320" cy="60" r="11" />
+          <circle class="node" cx="320" cy="180" r="11" />
+          <circle class="node" cx="450" cy="120" r="16" />
+          <circle class="node" cx="540" cy="60" r="10" />
+        </svg>
+      </div>
+    </section>
+
+    <section class="panel grid">
+      <div class="metric">
+        <span class="eyebrow">Focus</span>
+        <strong>Supply Chain Strike</strong>
+        <span class="muted">First-to-market tool for dependency attack simulation and remediation guidance.</span>
+      </div>
+      <div class="metric">
+        <span class="eyebrow">Research</span>
+        <strong>AI Agents</strong>
+        <span class="muted">Red team testing for autonomous workflows, model prompts, and agent orchestration.</span>
+      </div>
+      <div class="metric">
+        <span class="eyebrow">Next</span>
+        <strong>IoT Security</strong>
+        <span class="muted">Hardware and firmware research roadmap for 2026.</span>
+      </div>
+    </section>
+
+    <section class="panel timeline" id="timeline">
+      <div class="eyebrow">Launch Track</div>
+      <div class="timeline-item"><span>Mar 15</span> Pilot release for supply chain tooling with design partners.</div>
+      <div class="timeline-item"><span>Apr 2026</span> Public launch with expanded AI agent and IoT research coverage.</div>
+    </section>
+  </main>
+
+  <script>
+    const nodes = document.querySelectorAll('.node');
+    let current = 0;
+    setInterval(() => {
+      nodes[current].classList.remove('active');
+      current = (current + 1) % nodes.length;
+      nodes[current].classList.add('active');
+    }, 1200);
+  </script>
+</body>
+</html>
