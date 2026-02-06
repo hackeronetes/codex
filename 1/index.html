@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VINYA — Vector Field</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0c10;
+      --panel: #10161d;
+      --line: rgba(255, 255, 255, 0.08);
+      --text: #eef2f8;
+      --muted: #9aa4b2;
+      --accent: #66f2c2;
+      --accent-2: #6fa3ff;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+    }
+    body {
+      background: radial-gradient(circle at 12% 14%, rgba(111, 163, 255, 0.08), transparent 40%),
+                  radial-gradient(circle at 82% 18%, rgba(102, 242, 194, 0.12), transparent 40%),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    header {
+      padding: 32px clamp(24px, 6vw, 80px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: 0.32em;
+      font-weight: 600;
+    }
+    .logo span {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 16px rgba(102, 242, 194, 0.7);
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 13px;
+    }
+    main {
+      padding: 20px clamp(24px, 6vw, 80px) 80px;
+      display: grid;
+      gap: 32px;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+      align-items: center;
+    }
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      letter-spacing: -0.02em;
+      margin: 12px 0 16px;
+    }
+    p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .button {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 13px;
+    }
+    .button.primary {
+      border-color: rgba(102, 242, 194, 0.5);
+      background: rgba(102, 242, 194, 0.12);
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 24px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .metric {
+      display: grid;
+      gap: 8px;
+      font-size: 14px;
+    }
+    .metric strong {
+      font-size: 20px;
+    }
+    .graph-wrap {
+      position: relative;
+      height: 260px;
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(10, 13, 18, 0.7);
+    }
+    .graph {
+      position: absolute;
+      inset: 0;
+    }
+    .graph line {
+      stroke: rgba(111, 163, 255, 0.35);
+      stroke-width: 1.2;
+    }
+    .graph circle {
+      fill: rgba(102, 242, 194, 0.8);
+      transition: r 0.3s ease, fill 0.3s ease;
+    }
+    .graph circle.active {
+      fill: #ffffff;
+      r: 10;
+    }
+    .scan {
+      position: absolute;
+      top: -30%;
+      left: -10%;
+      width: 140%;
+      height: 60%;
+      background: linear-gradient(120deg, transparent, rgba(102, 242, 194, 0.16), transparent);
+      animation: sweep 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes sweep {
+      0% { transform: translateY(-40%); opacity: 0; }
+      40% { opacity: 1; }
+      100% { transform: translateY(140%); opacity: 0; }
+    }
+    .timeline {
+      display: grid;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .timeline strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><span></span> VINYA</div>
+    <nav>
+      <a href="/">Concepts</a>
+      <a href="#graph">Graph</a>
+      <a href="#roadmap">Roadmap</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">Offensive Research</div>
+        <h1>Model the attack path before the attacker does.</h1>
+        <p>VINYA builds supply chain tooling that simulates adversarial movement across dependencies. Founded by a bug bounty hunter, designed for engineering velocity and real-world risk.</p>
+        <div class="cta">
+          <a class="button primary" href="#graph">View graph core</a>
+          <a class="button" href="#roadmap">Launch cadence</a>
+        </div>
+      </div>
+      <div class="panel" id="graph">
+        <div class="eyebrow">Graph Intelligence</div>
+        <p>Live dependency mapping with provenance scoring and exploit chaining.</p>
+        <div class="graph-wrap">
+          <div class="scan"></div>
+          <svg class="graph" viewBox="0 0 640 260" role="img" aria-label="Graph visualization">
+            <line x1="100" y1="60" x2="220" y2="120" />
+            <line x1="220" y1="120" x2="340" y2="70" />
+            <line x1="220" y1="120" x2="340" y2="190" />
+            <line x1="340" y1="70" x2="470" y2="120" />
+            <line x1="340" y1="190" x2="470" y2="120" />
+            <line x1="470" y1="120" x2="560" y2="60" />
+            <circle cx="100" cy="60" r="7" />
+            <circle cx="220" cy="120" r="8" />
+            <circle cx="340" cy="70" r="7" />
+            <circle cx="340" cy="190" r="7" />
+            <circle cx="470" cy="120" r="9" />
+            <circle cx="560" cy="60" r="6" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel grid">
+      <div class="metric">
+        <span class="eyebrow">Launch</span>
+        <strong>Supply Chain Pilot</strong>
+        <span>Attack simulation, dependency integrity, CI/CD guardrails.</span>
+      </div>
+      <div class="metric">
+        <span class="eyebrow">Research</span>
+        <strong>AI Agents</strong>
+        <span>Prompt-chain red teaming and autonomous workflow testing.</span>
+      </div>
+      <div class="metric">
+        <span class="eyebrow">Next</span>
+        <strong>IoT Security</strong>
+        <span>Firmware trust and device-level provenance in 2026.</span>
+      </div>
+    </section>
+
+    <section class="panel timeline" id="roadmap">
+      <div><strong>Mar 15</strong> — Pilot release for supply chain tooling.</div>
+      <div><strong>Apr 2026</strong> — Full launch with AI agent + IoT research.</div>
+    </section>
+  </main>
+
+  <script>
+    const nodes = Array.from(document.querySelectorAll('.graph circle'));
+    let index = 0;
+    setInterval(() => {
+      nodes.forEach((node) => node.classList.remove('active'));
+      nodes[index].classList.add('active');
+      index = (index + 1) % nodes.length;
+    }, 1100);
+  </script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VINYA — Glass Line</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b111a;
+      --glass: rgba(255, 255, 255, 0.08);
+      --line: rgba(255, 255, 255, 0.16);
+      --text: #f3f6ff;
+      --muted: #b1bfd3;
+      --accent: #7df9ff;
+      --accent-2: #a28bff;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Manrope", "Inter", sans-serif;
+    }
+    body {
+      background: radial-gradient(circle at top left, rgba(125, 249, 255, 0.12), transparent 45%),
+                  radial-gradient(circle at bottom right, rgba(162, 139, 255, 0.2), transparent 45%),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    header {
+      padding: 32px clamp(24px, 7vw, 96px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      letter-spacing: 0.32em;
+      font-weight: 600;
+    }
+    .logo span {
+      width: 14px;
+      height: 14px;
+      border-radius: 6px;
+      background: linear-gradient(120deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 18px rgba(125, 249, 255, 0.6);
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 18px;
+      font-size: 13px;
+    }
+    main {
+      padding: 0 clamp(24px, 7vw, 96px) 80px;
+      display: grid;
+      gap: 32px;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+      align-items: center;
+    }
+    h1 {
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .glass {
+      background: var(--glass);
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      padding: 24px;
+      backdrop-filter: blur(14px);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(125, 249, 255, 0.12);
+      color: var(--accent);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      margin-bottom: 12px;
+    }
+    .graph {
+      position: relative;
+      height: 220px;
+      margin-top: 12px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+    .graph svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .graph line {
+      stroke: rgba(125, 249, 255, 0.4);
+      stroke-width: 1.2;
+    }
+    .graph circle {
+      fill: rgba(162, 139, 255, 0.9);
+      transition: r 0.3s ease, fill 0.3s ease;
+    }
+    .graph circle.active {
+      fill: var(--accent);
+      r: 10;
+    }
+    .glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, rgba(125, 249, 255, 0.2), transparent 55%);
+      opacity: 0.4;
+      animation: drift 8s ease-in-out infinite;
+    }
+    @keyframes drift {
+      0% { transform: translate(-10%, -10%); }
+      50% { transform: translate(10%, 15%); }
+      100% { transform: translate(-10%, -10%); }
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><span></span> VINYA</div>
+    <nav>
+      <a href="/">Concepts</a>
+      <a href="#graph">Graph</a>
+      <a href="#roadmap">Roadmap</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="badge">Minimal + Secure</div>
+        <h1>Build fast, ship safe, see every dependency.</h1>
+        <p>VINYA is a cybersecurity startup with an offensive research focus. The first product targets supply chain exposure, followed by AI agents and IoT security.</p>
+      </div>
+      <div class="glass" id="graph">
+        <strong>Graph intelligence layer</strong>
+        <p>Interactive view of provenance, dependency links, and exploit paths.</p>
+        <div class="graph">
+          <div class="glow"></div>
+          <svg viewBox="0 0 640 220" role="img" aria-label="Graph visualization">
+            <line x1="90" y1="70" x2="210" y2="110" />
+            <line x1="210" y1="110" x2="330" y2="60" />
+            <line x1="210" y1="110" x2="330" y2="170" />
+            <line x1="330" y1="60" x2="450" y2="110" />
+            <line x1="330" y1="170" x2="450" y2="110" />
+            <line x1="450" y1="110" x2="560" y2="70" />
+            <circle cx="90" cy="70" r="7" />
+            <circle cx="210" cy="110" r="8" />
+            <circle cx="330" cy="60" r="7" />
+            <circle cx="330" cy="170" r="7" />
+            <circle cx="450" cy="110" r="9" />
+            <circle cx="560" cy="70" r="6" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="glass">
+        <strong>Supply Chain Launch</strong>
+        <p>Attack simulation and dependency integrity for CI/CD.</p>
+      </div>
+      <div class="glass">
+        <strong>AI Agent Research</strong>
+        <p>Prompt-chain and orchestration threat modeling.</p>
+      </div>
+      <div class="glass">
+        <strong>IoT Future</strong>
+        <p>Device trust, firmware integrity, and lifecycle assurance.</p>
+      </div>
+    </section>
+
+    <section class="glass" id="roadmap">
+      <strong>Launch roadmap</strong>
+      <p>Mar 15 pilot for supply chain tooling. Apr 2026 full launch.</p>
+    </section>
+  </main>
+
+  <script>
+    const nodes = Array.from(document.querySelectorAll('.graph circle'));
+    let index = 0;
+    setInterval(() => {
+      nodes.forEach((node) => node.classList.remove('active'));
+      nodes[index].classList.add('active');
+      index = (index + 1) % nodes.length;
+    }, 1200);
+  </script>
+</body>
+</html>

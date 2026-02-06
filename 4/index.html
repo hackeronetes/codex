@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VINYA — Terminal Praxis</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #050607;
+      --panel: #0b1114;
+      --line: rgba(41, 242, 165, 0.18);
+      --text: #d7f9e5;
+      --muted: #79a18f;
+      --accent: #29f2a5;
+      --accent-2: #00c2ff;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "JetBrains Mono", "Fira Code", monospace;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    header {
+      padding: 28px clamp(20px, 6vw, 80px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+    }
+    .logo {
+      letter-spacing: 0.32em;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo span {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      background: var(--accent);
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 18px;
+      font-size: 12px;
+    }
+    main {
+      padding: 40px clamp(20px, 6vw, 80px) 80px;
+      display: grid;
+      gap: 24px;
+    }
+    .terminal {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 20px;
+      display: grid;
+      gap: 12px;
+    }
+    .prompt {
+      color: var(--accent);
+    }
+    h1 {
+      font-size: clamp(2.1rem, 4vw, 2.8rem);
+    }
+    p {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+    .graph {
+      position: relative;
+      height: 220px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      overflow: hidden;
+    }
+    .graph svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .graph line {
+      stroke: rgba(0, 194, 255, 0.4);
+      stroke-width: 1.2;
+    }
+    .graph circle {
+      fill: rgba(41, 242, 165, 0.85);
+      transition: r 0.3s ease, fill 0.3s ease;
+    }
+    .graph circle.active {
+      fill: #ffffff;
+      r: 10;
+    }
+    .scanline {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent, rgba(41, 242, 165, 0.12), transparent);
+      transform: translateY(-100%);
+      animation: scan 5s ease-in-out infinite;
+    }
+    @keyframes scan {
+      0% { transform: translateY(-100%); opacity: 0; }
+      40% { opacity: 1; }
+      100% { transform: translateY(100%); opacity: 0; }
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .chip {
+      border: 1px dashed rgba(41, 242, 165, 0.4);
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><span></span> VINYA</div>
+    <nav>
+      <a href="/">Concepts</a>
+      <a href="#graph">Graph</a>
+      <a href="#roadmap">Roadmap</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="terminal">
+      <div class="prompt">$ vinya --mission</div>
+      <h1>Build offensive security tools that ship fast.</h1>
+      <p>VINYA turns adversarial research into practical product. We validate supply chain risk now, expand into AI agents and IoT next.</p>
+    </section>
+
+    <section class="terminal" id="graph">
+      <div class="prompt">$ vinya graph --render</div>
+      <p>Graph database view of dependency provenance and exploit routes.</p>
+      <div class="graph">
+        <div class="scanline"></div>
+        <svg viewBox="0 0 640 220" role="img" aria-label="Graph visualization">
+          <line x1="90" y1="110" x2="210" y2="60" />
+          <line x1="90" y1="110" x2="210" y2="160" />
+          <line x1="210" y1="60" x2="320" y2="110" />
+          <line x1="210" y1="160" x2="320" y2="110" />
+          <line x1="320" y1="110" x2="430" y2="60" />
+          <line x1="320" y1="110" x2="430" y2="160" />
+          <line x1="430" y1="60" x2="550" y2="110" />
+          <line x1="430" y1="160" x2="550" y2="110" />
+          <circle cx="90" cy="110" r="7" />
+          <circle cx="210" cy="60" r="8" />
+          <circle cx="210" cy="160" r="8" />
+          <circle cx="320" cy="110" r="9" />
+          <circle cx="430" cy="60" r="8" />
+          <circle cx="430" cy="160" r="8" />
+          <circle cx="550" cy="110" r="7" />
+        </svg>
+      </div>
+    </section>
+
+    <section class="grid" id="roadmap">
+      <div class="chip">Mar 15 pilot — supply chain tool with partner feedback.</div>
+      <div class="chip">Apr 2026 launch — AI agent + IoT research integrated.</div>
+      <div class="chip">Offensive posture — adversary simulation in CI/CD.</div>
+    </section>
+  </main>
+
+  <script>
+    const nodes = Array.from(document.querySelectorAll('.graph circle'));
+    let index = 0;
+    setInterval(() => {
+      nodes.forEach((node) => node.classList.remove('active'));
+      nodes[index].classList.add('active');
+      index = (index + 1) % nodes.length;
+    }, 900);
+  </script>
+</body>
+</html>

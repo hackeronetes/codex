@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VINYA — Design System Preview</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0e12;
+      --panel: #12161c;
+      --line: rgba(255, 255, 255, 0.08);
+      --text: #eef2f8;
+      --muted: #9aa4b2;
+      --accent: #64f3c4;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    .wrap {
+      width: min(1100px, 92vw);
+      margin: 0 auto;
+      padding: 64px 0 80px;
+      display: grid;
+      gap: 40px;
+    }
+    header {
+      display: grid;
+      gap: 16px;
+    }
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    h1 {
+      font-size: clamp(2.4rem, 4vw, 3.2rem);
+      letter-spacing: -0.02em;
+    }
+    p {
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 720px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    a.card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px;
+      text-decoration: none;
+      color: var(--text);
+      display: grid;
+      gap: 12px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    a.card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(100, 243, 196, 0.4);
+    }
+    .tag {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      color: var(--accent);
+    }
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    footer {
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <span class="eyebrow">VINYA CONCEPT ATLAS</span>
+      <h1>Five disciplined interface directions for a security-first launch.</h1>
+      <p>Each concept emphasizes clarity, honest materials, and restraint. The layouts reflect an offensive security posture while staying aligned to Dieter Rams principles: minimal, useful, and unobtrusive.</p>
+    </header>
+
+    <section class="grid">
+      <a class="card" href="/1/">
+        <span class="tag">01 · Vector Field</span>
+        <strong>Precision grid with motion-limited graph intelligence.</strong>
+        <div class="meta"><span>Dark mode</span><span>Offense-first</span></div>
+      </a>
+      <a class="card" href="/2/">
+        <span class="tag">02 · Clear Lab</span>
+        <strong>Light, clinical research frame with timeline discipline.</strong>
+        <div class="meta"><span>Light mode</span><span>Launch cadence</span></div>
+      </a>
+      <a class="card" href="/3/">
+        <span class="tag">03 · Signal Split</span>
+        <strong>Editorial layout with structured threat briefs.</strong>
+        <div class="meta"><span>Split layout</span><span>Research focus</span></div>
+      </a>
+      <a class="card" href="/4/">
+        <span class="tag">04 · Terminal Praxis</span>
+        <strong>Command interface with controlled telemetry.</strong>
+        <div class="meta"><span>Monospace</span><span>System console</span></div>
+      </a>
+      <a class="card" href="/5/">
+        <span class="tag">05 · Glass Line</span>
+        <strong>Soft glass panels with structured roadmap.</strong>
+        <div class="meta"><span>Glass UI</span><span>Roadmap</span></div>
+      </a>
+    </section>
+
+    <footer>Logo placeholder used — replace with the provided transparent asset when available.</footer>
+  </div>
+</body>
+</html>

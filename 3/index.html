@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VINYA — Signal Split</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0e13;
+      --panel: #121826;
+      --line: rgba(255, 255, 255, 0.08);
+      --text: #eef2f8;
+      --muted: #95a1b2;
+      --accent: #ff8459;
+      --accent-2: #7a66ff;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(260px, 420px) 1fr;
+      min-height: 100vh;
+    }
+    aside {
+      padding: 48px 40px;
+      border-right: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(122, 102, 255, 0.15), transparent 65%);
+      display: grid;
+      gap: 24px;
+    }
+    main {
+      padding: 48px clamp(24px, 6vw, 72px);
+      display: grid;
+      gap: 28px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      letter-spacing: 0.32em;
+      font-weight: 600;
+    }
+    .logo span {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 14px rgba(255, 132, 89, 0.6);
+    }
+    h1 {
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      letter-spacing: -0.02em;
+    }
+    p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      text-decoration: none;
+      color: var(--text);
+      font-size: 13px;
+    }
+    .btn.primary {
+      border-color: rgba(255, 132, 89, 0.5);
+      background: rgba(255, 132, 89, 0.12);
+    }
+    .card {
+      background: var(--panel);
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid var(--line);
+    }
+    .graph {
+      position: relative;
+      height: 240px;
+      margin-top: 12px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+    .graph svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .graph line {
+      stroke: rgba(122, 102, 255, 0.4);
+      stroke-width: 1.4;
+    }
+    .graph circle {
+      fill: rgba(255, 132, 89, 0.9);
+      transition: r 0.3s ease, fill 0.3s ease;
+    }
+    .graph circle.active {
+      fill: #ffffff;
+      r: 10;
+    }
+    .ticker {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      font-size: 12px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .line-item {
+      display: grid;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .line-item strong {
+      color: var(--text);
+      font-size: 16px;
+    }
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      aside {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside>
+      <div class="logo"><span></span> VINYA</div>
+      <div>
+        <h1>Offense-driven security research.</h1>
+        <p>VINYA builds pragmatic tools for the supply chain, AI agents, and IoT. The work is grounded in bug bounty practice and measurable threat models.</p>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="#graph">Graph signal</a>
+        <a class="btn" href="/">All concepts</a>
+      </div>
+      <div class="line-item">
+        <strong>Mar 15 Pilot</strong>
+        <span>Supply chain tool with partner feedback loop.</span>
+      </div>
+      <div class="line-item">
+        <strong>Apr 2026 Launch</strong>
+        <span>Full release with AI agent + IoT coverage.</span>
+      </div>
+    </aside>
+
+    <main>
+      <section class="card" id="graph">
+        <strong>Graph-based attack surface</strong>
+        <p>Structured dependency view for provenance, risk, and exploit sequencing.</p>
+        <div class="graph">
+          <svg viewBox="0 0 640 240" role="img" aria-label="Graph visualization">
+            <line x1="90" y1="120" x2="210" y2="70" />
+            <line x1="90" y1="120" x2="210" y2="170" />
+            <line x1="210" y1="70" x2="320" y2="120" />
+            <line x1="210" y1="170" x2="320" y2="120" />
+            <line x1="320" y1="120" x2="430" y2="70" />
+            <line x1="320" y1="120" x2="430" y2="170" />
+            <line x1="430" y1="70" x2="560" y2="120" />
+            <line x1="430" y1="170" x2="560" y2="120" />
+            <circle cx="90" cy="120" r="7" />
+            <circle cx="210" cy="70" r="8" />
+            <circle cx="210" cy="170" r="8" />
+            <circle cx="320" cy="120" r="9" />
+            <circle cx="430" cy="70" r="8" />
+            <circle cx="430" cy="170" r="8" />
+            <circle cx="560" cy="120" r="7" />
+          </svg>
+          <div class="ticker">Live trace</div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <div class="card">
+          <strong>Supply Chain Sentinel</strong>
+          <p>Detect malicious packages, script tampering, and CI/CD compromise patterns.</p>
+        </div>
+        <div class="card">
+          <strong>AI Agent Kill Chain</strong>
+          <p>Red-team autonomous workflows, prompt chains, and agentic tool abuse.</p>
+        </div>
+        <div class="card">
+          <strong>IoT Horizon</strong>
+          <p>Firmware integrity, device identity, and OTA trust research.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const nodes = Array.from(document.querySelectorAll('.graph circle'));
+    let index = 0;
+    setInterval(() => {
+      nodes.forEach((node) => node.classList.remove('active'));
+      nodes[index].classList.add('active');
+      index = (index + 1) % nodes.length;
+    }, 1000);
+  </script>
+</body>
+</html>
